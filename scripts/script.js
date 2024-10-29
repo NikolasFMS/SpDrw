@@ -301,6 +301,7 @@ function next() {
 
 function start() {
     playSound(clickSound);
+    newCard();
 
     const inputs = document.querySelectorAll("#playerInputs input");
     playerCount = parseInt(document.getElementById("playerCount").value, 10);
@@ -314,7 +315,6 @@ function start() {
 
     countText.textContent = "There are " + deckCount + " cards left in the deck."
 
-    updateCardText(cardIndex);
     menu.classList.add('hide');
     game.classList.remove('hide');
 }
