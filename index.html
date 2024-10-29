@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="ico/favicon.svg" type="image/svg">
+
+    <title>Скоростные каракули</title>
+</head>
+
+<body>
+
+    <div class="menu">
+        <div class="logo" style="background-image: url(img/logoRu.png);"></div>
+
+        <h1 id="heading-players">Сколько игроков?</h1>
+        <div class="select-container">
+            <select id="playerCount" class="select player">
+                <option>3 игрока</option>
+                <option>4 игрока</option>
+                <option>5 игроков</option>
+                <option>6 игроков</option>
+                <option>7 игроков</option>
+                <option>8 игроков</option>
+                <option>9 игроков</option>
+                <option>10 игроков</option>
+                <option>11 игроков</option>
+                <option>12 игроков</option>
+                <option>13 игроков</option>
+            </select>
+        </div>
+        <p id="select-text">Выберите количество игроков</p>
+        <p id="recommend-text">Рекомендуемое количество игроков: 3 - 7</p>
+        <button class="button start" onclick="start()">начать игру</button>
+        <p id="next-instruction">Нажмите кнопку "ДАЛЕЕ", чтобы ввести имена игроков.</p>
+    </div>
+
+    <div class="app hide">
+        <h1 class="round" id="round-text">РАУНД 1</h1>
+        <p class="deck-count"></p>
+
+        <div class="card">
+            <!-- Контейнеры с карточками -->
+            <div class="container-item">
+                <div class="number white" style="background-image: url(img/star2.svg);">1</div>
+                <div class="item black">
+                    <span class="text "></span>
+                </div>
+            </div>
+            <div class="container-item">
+                <div class="number black" style="background-image: url(img/star1.svg);">2</div>
+                <div class="item white">
+                    <span class="text black"></span>
+                </div>
+            </div>
+            <div class="container-item">
+                <div class="number white" style="background-image: url(img/star2.svg);">3</div>
+                <div class="item black">
+                    <span class="text"></span>
+                </div>
+            </div>
+            <div class="container-item">
+                <div class="number black" style="background-image: url(img/star1.svg);">4</div>
+                <div class="item white">
+                    <span class="text"></span>
+                </div>
+            </div>
+            <div class="container-item">
+                <div class="number white" style="background-image: url(img/star2.svg);">5</div>
+                <div class="item black">
+                    <span class="text"></span>
+                </div>
+            </div>
+            <div class="container-item">
+                <div class="number black" style="background-image: url(img/star1.svg);">6</div>
+                <div class="item white">
+                    <span class="text"></span>
+                </div>
+            </div>
+            <div class="container-item">
+                <div class="number white" style="background-image: url(img/star2.svg);">7</div>
+                <div class="item black">
+                    <span class="text"></span>
+                </div>
+            </div>
+
+        </div>
+        <button class="button" onclick="next()" id="open-card-btn">открыть карту</button>
+    </div>
+
+    <!-- Оверлей загрузки игры -->
+    <div class="overlay load">
+        <p> загрузка... </p>
+    </div>
+
+    <div class="lng" onclick="toggleLanguage()">EN</div>
+
+
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>
