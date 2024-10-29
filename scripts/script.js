@@ -187,7 +187,6 @@ const translationsUI = {
     }
 };
 
-
 let openCards = [];  //  Индексы открытых карт
 let cardIndex = 0;
 const logo = document.querySelector(".logo");
@@ -197,6 +196,8 @@ const countText = document.querySelector(".deck-count");
 const menu = document.querySelector(".menu");
 const game = document.querySelector(".app");
 const playerSelect = document.getElementById("playerCount");
+let currentLang = "ru";
+let translation = translationsUI[currentLang];
 
 let round = 1;
 let playerCount = null;
@@ -207,11 +208,26 @@ const clickSound = new Audio('audio/click.mp3');  //  Звук клика
 
 // Функция для переключения языка
 function toggleLanguage() {
-    const currentLang = document.documentElement.lang === "ru" ? "en" : "ru";
-
+    currentLang = document.documentElement.lang === "ru" ? "en" : "ru";
     document.documentElement.lang = currentLang;
+    translation = translationsUI[currentLang];
+    updateCardText(cardIndex, translation);
+}
 
-    const translation = translationsUI[currentLang];
+// Функция для обновления текста в span
+function updateCardText(cardIndex, translation) {
+    const spans = document.querySelectorAll('span');
+    const currentLang = document.documentElement.lang === "ru" ? "ru" : "en";
+    const selectedCards = translationsUI[currentLang].cards[cardIndex];
+
+    if (selectedCards) {
+        spans.forEach((span, index) => {
+            span.textContent = selectedCards[index] || ""; // Добавляем текст или оставляем пустым, если элементов больше, чем карточек
+        });
+    } else {
+        console.error("Invalid card index");
+    }
+    
     document.getElementById("heading-players").textContent = translation.headingPlayers;
     document.getElementById("select-text").textContent = translation.selectText;
     document.getElementById("recommend-text").textContent = translation.recommendText;
@@ -222,7 +238,6 @@ function toggleLanguage() {
     document.querySelector(".lng").textContent = translation.languageLabel;
     document.querySelector(".deck-count").textContent = translation.countDeck;
     document.querySelector(".start").textContent = translation.buttonStart;
-
     document.querySelector(".round").textContent = translation.roundText(round);
     document.querySelector(".deck-count").textContent = translation.countDeck(deckCount);
 
@@ -236,22 +251,6 @@ function toggleLanguage() {
         optionElement.textContent = option;
         playerSelect.appendChild(optionElement);
     });
-    updateCardText(cardIndex);
-}
-
-// Функция для обновления текста в span
-function updateCardText(cardIndex) {
-    const spans = document.querySelectorAll('span');
-    const currentLang = document.documentElement.lang === "ru" ? "ru" : "en";
-    const selectedCards = translationsUI[currentLang].cards[cardIndex];
-
-    if (selectedCards) {
-        spans.forEach((span, index) => {
-            span.textContent = selectedCards[index] || ""; // Добавляем текст или оставляем пустым, если элементов больше, чем карточек
-        });
-    } else {
-        console.error("Invalid card index");
-    }
 }
 
 //  Функция для воспроизведения звука
@@ -285,7 +284,7 @@ function newCard() {
     //  Добавляем индекс открытой карты в массив
     openCards.push(cardIndex);
 
-    updateCardText(cardIndex);
+    updateCardText(cardIndex, translation);
 }
 
 function next() {
@@ -293,15 +292,11 @@ function next() {
 
     round++;
     deckCount--;
-
-    roundText.textContent = "ROUND " + round;
-    countText.textContent = "There are " + deckCount + " cards left in the deck.";
     newCard();
 }
 
 function start() {
     playSound(clickSound);
-    newCard();
 
     const inputs = document.querySelectorAll("#playerInputs input");
     playerCount = parseInt(document.getElementById("playerCount").value, 10);
@@ -312,13 +307,11 @@ function start() {
     } else {
         deckCount = 12;
     }
-
-    countText.textContent = "There are " + deckCount + " cards left in the deck."
-
+    updateCardText(cardIndex, translation);
+    newCard();
     menu.classList.add('hide');
     game.classList.remove('hide');
 }
-
 
 window.onload = function () {
     const load = document.querySelector('.overlay.load');
