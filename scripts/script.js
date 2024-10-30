@@ -149,9 +149,9 @@ const cardsEn = [
 const translationsUI = {
     ru: {
         headingPlayers: "Сколько игроков?",
-        selectText: "Выберите количество игроков",
+        //selectText: "Выберите количество игроков",
         recommendText: "Рекомендуемое количество игроков: 3 - 7",
-        nextInstruction: "Нажмите кнопку 'ДАЛЕЕ', чтобы начать игру.",
+        nextInstruction: "Нажмите кнопку 'СТАРТ ИГРЫ', чтобы начать игру.",
         roundText: (round) => "РАУНД " + round,
         openCardBtn: "открыть карту",
         loading: "загрузка...",
@@ -168,9 +168,9 @@ const translationsUI = {
     },
     en: {
         headingPlayers: "How many players?",
-        selectText: "Select number of players",
+        //selectText: "Select number of players",
         recommendText: "Recommended number of players: 3 - 7",
-        nextInstruction: "Click 'NEXT' button to start the game.",
+        nextInstruction: "Click 'START GAME' button to start the game.",
         roundText: (round) => "ROUND " + round,
         openCardBtn: "next card",
         loading: "loading...",
@@ -229,7 +229,7 @@ function updateCardText(cardIndex, translation) {
     }
     
     document.getElementById("heading-players").textContent = translation.headingPlayers;
-    document.getElementById("select-text").textContent = translation.selectText;
+    //document.getElementById("select-text").textContent = translation.selectText;
     document.getElementById("recommend-text").textContent = translation.recommendText;
     document.getElementById("next-instruction").textContent = translation.nextInstruction;
     document.getElementById("round-text").textContent = translation.roundText;
