@@ -272,7 +272,7 @@ function ultraRandom(min, max) {
 }
 
 function newCard() {
-    //  Проверка: если все карты открыты, функция не выполняется
+    //  Проверка: если все карты открыты, то массив обнуляется
     if (openCards.length >= cardsRu.length) {
         openCards = [];
     }
@@ -289,7 +289,9 @@ function newCard() {
 
 function next() {
     playSound(clickSound);
-
+    if (deckCount === 0) {
+        document.querySelector(".deck-count").classList.add('red');
+    }
     round++;
     deckCount--;
     newCard();
