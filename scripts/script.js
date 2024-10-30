@@ -289,11 +289,11 @@ function newCard() {
 
 function next() {
     playSound(clickSound);
+    round++;
+    deckCount--;
     if (deckCount === 0) {
         document.querySelector(".deck-count").classList.add('red');
     }
-    round++;
-    deckCount--;
     newCard();
 }
 
