@@ -190,7 +190,6 @@ body {
     transition: background-color 0.3s ease, transform 0.2s ease;
     outline: none;
     box-shadow: 2px 2px 4px #00000062;
-
 }
 
 /* Анимация нажатия */
@@ -203,6 +202,8 @@ body {
 
 .red {
     color: red;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .hide {
