@@ -206,6 +206,8 @@ const clickSound = new Audio('audio/click.mp3');  //  Звук клика
 
 // Функция для переключения языка
 function toggleLanguage() {
+    playSound(clickSound);
+
     currentLang = document.documentElement.lang === "ru" ? "en" : "ru";
     document.documentElement.lang = currentLang;
     translation = translationsUI[currentLang];
